@@ -129,4 +129,4 @@ equation = addition(equation)
 
 equation = subtraction(equation)
 
-print(f"Result: {equation.rstrip('.0') if equation != '0' else '0'}")
+print(f"Result: {equation.rstrip('0').rstrip('.') if equation != '0' else '0'}")
