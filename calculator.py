@@ -6,7 +6,7 @@ def get_first_num(sub_or_full_equation, index):
     num = ""
     start = 0
 
-    for i in range(index - 2, -1, -1):
+    for i in range(index - 1, -1, -1):
         if sub_or_full_equation[i] != " " and sub_or_full_equation[i] != "(":
             num += sub_or_full_equation[i]
             if i == 0:
@@ -22,7 +22,7 @@ def get_second_num(sub_or_full_equation, index):
     num = ""
     end = 0
 
-    for i in range(index + 2, len(sub_or_full_equation)):
+    for i in range(index + 3, len(sub_or_full_equation)):
         if sub_or_full_equation[i] != " " and sub_or_full_equation[i] != ")":
             num += sub_or_full_equation[i]
             if i == len(sub_or_full_equation) - 1:
@@ -35,8 +35,8 @@ def get_second_num(sub_or_full_equation, index):
 
 
 def addition(sub_or_full_equation):
-    while "+" in sub_or_full_equation:
-        plus_location = sub_or_full_equation.index("+")
+    while " + " in sub_or_full_equation:
+        plus_location = sub_or_full_equation.index(" + ")
         first_num, start = get_first_num(sub_or_full_equation, plus_location)
         second_num, end = get_second_num(sub_or_full_equation, plus_location)
         result = str(first_num + second_num)
@@ -48,8 +48,8 @@ def addition(sub_or_full_equation):
 
 
 def subtraction(sub_or_full_equation):
-    while "-" in sub_or_full_equation:
-        minus_location = sub_or_full_equation.index("-")
+    while " - " in sub_or_full_equation:
+        minus_location = sub_or_full_equation.index(" - ")
         first_num, start = get_first_num(sub_or_full_equation, minus_location)
         second_num, end = get_second_num(sub_or_full_equation, minus_location)
         result = str(first_num - second_num)
@@ -61,8 +61,8 @@ def subtraction(sub_or_full_equation):
 
 
 def multiplication(sub_or_full_equation):
-    while "*" in sub_or_full_equation:
-        multiplication_location = sub_or_full_equation.index("*")
+    while " * " in sub_or_full_equation:
+        multiplication_location = sub_or_full_equation.index(" * ")
         first_num, start = get_first_num(sub_or_full_equation, multiplication_location)
         second_num, end = get_second_num(sub_or_full_equation, multiplication_location)
         result = str(first_num * second_num)
@@ -74,8 +74,8 @@ def multiplication(sub_or_full_equation):
 
 
 def division(sub_or_full_equation):
-    while "/" in sub_or_full_equation:
-        division_location = sub_or_full_equation.index("/")
+    while " / " in sub_or_full_equation:
+        division_location = sub_or_full_equation.index(" / ")
         first_num, start = get_first_num(sub_or_full_equation, division_location)
         second_num, end = get_second_num(sub_or_full_equation, division_location)
         result = str(first_num / second_num)
@@ -129,4 +129,4 @@ equation = addition(equation)
 
 equation = subtraction(equation)
 
-print(f"Result: {equation.rstrip('.0')}")
+print(f"Result: {equation.rstrip('.0') if equation != '0' else '0'}")
