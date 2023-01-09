@@ -28,7 +28,7 @@ def get_second_num(sub_or_full_equation, index):
             if i == len(sub_or_full_equation) - 1:
                 end = i + 1
         else:
-            end = i
+            end = i + 1
             break
 
     return Decimal(num), end
