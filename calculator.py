@@ -114,7 +114,7 @@ def bracket_solving(the_equation):
 
 
 print("""Welcome to my calculator!
-In order to use it, you need put spaces between the numbers and arithmetic symbols like this - X + Y or (X - Y).
+In order to use it, you need to put spaces between the numbers and arithmetic symbols like this - X + Y or (X - Y).
 Otherwise it will explode. Currently, it only supports addition, subtraction, multiplication and division.
 If you find bugs, message me.""")
 equation = input("Type your expression here: ")
