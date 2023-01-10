@@ -104,7 +104,7 @@ def bracket_solving(the_expression):
             bracket_expression = subtraction(bracket_expression)
 
             the_expression = the_expression[:bracket_expression_start] + bracket_expression \
-                           + the_expression[bracket_expression_end:]
+                             + the_expression[bracket_expression_end:]
 
         elif "(" in the_expression or ")" in the_expression:
             print("Error, invalid syntax.")
