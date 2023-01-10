@@ -41,9 +41,8 @@ def addition(sub_or_full_expression):
         second_num, end = get_second_num(sub_or_full_expression, plus_location)
         result = str(first_num + second_num)
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result \
-                                 + sub_or_full_expression[end:]
-
+        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+                                 
     return sub_or_full_expression
 
 
@@ -54,9 +53,8 @@ def subtraction(sub_or_full_expression):
         second_num, end = get_second_num(sub_or_full_expression, minus_location)
         result = str(first_num - second_num)
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result \
-                                 + sub_or_full_expression[end:]
-
+        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+                                 
     return sub_or_full_expression
 
 
@@ -67,9 +65,8 @@ def multiplication(sub_or_full_expression):
         second_num, end = get_second_num(sub_or_full_expression, multiplication_location)
         result = str(first_num * second_num)
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result \
-                                 + sub_or_full_expression[end:]
-
+        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+                                 
     return sub_or_full_expression
 
 
@@ -80,8 +77,7 @@ def division(sub_or_full_expression):
         second_num, end = get_second_num(sub_or_full_expression, division_location)
         result = str(first_num / second_num)
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result \
-                                 + sub_or_full_expression[end:]
+        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
 
     return sub_or_full_expression
 
