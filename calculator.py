@@ -42,7 +42,7 @@ def addition(sub_or_full_expression):
         result = str(first_num + second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
-                                 
+
     return sub_or_full_expression
 
 
@@ -54,7 +54,7 @@ def subtraction(sub_or_full_expression):
         result = str(first_num - second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
-                                 
+
     return sub_or_full_expression
 
 
@@ -66,7 +66,7 @@ def multiplication(sub_or_full_expression):
         result = str(first_num * second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
-                                 
+
     return sub_or_full_expression
 
 
@@ -102,9 +102,8 @@ def bracket_solving(the_expression):
             the_expression = the_expression[:bracket_expression_start] + bracket_expression \
                              + the_expression[bracket_expression_end:]
 
-        elif "(" in the_expression or ")" in the_expression:
-            print("Error, invalid syntax.")
-            exit()
+        else:
+            raise SyntaxError("Error, invalid syntax.")
 
     return the_expression
 
