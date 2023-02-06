@@ -8,7 +8,7 @@ class BusyFieldError(Exception):
 def choose_side(player):
     while True:
         try:
-            side = input(f"{player} would you like to play with 'X' or 'O'? ")
+            side = input(f"{player} would you like to play with 'X' or 'O'? ").capitalize()
 
             if side not in ('X', 'O'):
                 raise ValueError
@@ -16,7 +16,7 @@ def choose_side(player):
             other_side = 'O' if side != 'O' else 'X'
 
         except ValueError:
-            print("Side must be 'X' or 'O'")
+            print("Side must be 'X' or 'O'.")
 
         else:
             break
