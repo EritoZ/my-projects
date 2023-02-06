@@ -27,25 +27,17 @@ def choose_side(player):
 def victory_logic(board_size, the_board, chosen_field, player_side):
     row_i, col_i = chosen_field
 
-    left = [the_board[row_i][i] for i in range(col_i, -1, -1)]
+    horizontal = [the_board[row_i][i] for i in range(board_size)]
 
-    left_up = [the_board[row_i - i][col_i - i] for i in range(3) if {row_i - i, col_i - i}.issubset(range(board_size))]
+    vertical = [the_board[i][col_i] for i in range(board_size)]
 
-    up = [the_board[i][col_i] for i in range(row_i, -1, -1)]
+    first_diagonal = [the_board[i][i] for i in range(board_size)]
 
-    up_right = [the_board[row_i - i][col_i + i] for i in range(3) if {row_i - i, col_i + i}.issubset(range(board_size))]
-
-    right = [the_board[row_i][i] for i in range(col_i, board_size)]
-
-    down_right = [the_board[row_i + i][col_i + i] for i in range(3) if {row_i + i, col_i + i}.issubset(range(board_size))]
-
-    down = [the_board[i][col_i] for i in range(row_i, board_size)]
-
-    down_left = [the_board[row_i + i][col_i - i] for i in range(3) if {row_i + i, col_i - i}.issubset(range(board_size))]
+    second_diagonal = [the_board[i][2 - i] for i in range(board_size)]
 
     return 3 * [player_side] in (
-        left, left_up, up, up_right,
-        right, down_right, down, down_left
+        horizontal, vertical,
+        second_diagonal, first_diagonal
     )
 
 
