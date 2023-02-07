@@ -75,7 +75,7 @@ while fields and not winner:
         fields -= 1
         board[row][col] = side
 
-        if moves + 1 >= 3 and victory_logic(3, board, [row, col], side):
+        if players[0][2] >= 3 and victory_logic(3, board, [row, col], side):
             winner = current_player
 
     except (IndexError, ValueError):
