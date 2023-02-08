@@ -23,38 +23,37 @@ def player_count():
     return deque([n, 0] for n in range(1, players_amount + 1))
 
 
-def directions_search(row_len, col_len, board, current_spot, player_info):
+def lines_search(row_len, col_len, board, current_spot, player_info):
     row_i, col_i = current_spot
 
-    left = [board[row_i][i] for i in range(col_i, -1, -1)]
+    horizontal = ''.join([str(board[row_i][i]) for i in range(col_len)])
 
-    left_up = [board[row_i - i][col_i - i] for i in range(4)
+    vertical = ''.join([str(board[i][col_i]) for i in range(row_len)])
+
+    left_up = [str(board[row_i - i][col_i - i]) for i in range(4)
                if row_i - i in range(row_len) and col_i - i in range(col_len)]
 
-    up = [board[i][col_i] for i in range(row_i, -1, -1)][:4]
-
-    up_right = [board[row_i - i][col_i + i] for i in range(4)
+    up_right = [str(board[row_i - i][col_i + i]) for i in range(4)
                 if row_i - i in range(row_len) and col_i + i in range(col_len)]
 
-    right = [board[row_i][i] for i in range(col_i, col_len)][:4]
-
-    down_right = [board[row_i + i][col_i + i] for i in range(4)
+    down_right = [str(board[row_i + i][col_i + i]) for i in range(1, 4)
                   if row_i + i in range(row_len) and col_i + i in range(col_len)]
 
-    down = [board[i][col_i] for i in range(row_i, row_len)][:4]
-
-    down_left = [board[row_i + i][col_i - i] for i in range(4)
+    down_left = [str(board[row_i + i][col_i - i]) for i in range(1, 4)
                  if row_i + i in range(row_len) and col_i - i in range(col_len)]
 
-    return 4 * [player_info] in (
-            left, left_up, up, up_right,
-            right, down_right, down, down_left
-    )
+    first_line = ''.join(left_up[::-1] + down_right)
+
+    second_line = ''.join(down_left + up_right)
+
+    all_lines = (horizontal, vertical, first_line, second_line)
+
+    return any([4 * str(player_info) in line for line in all_lines])
 
 
 def check_if_won(player_moves_counter, rows_len, columns_len, board, current_spot, player_info):
 
-    return player_moves_counter >= 4 and directions_search(rows_len, columns_len, board, current_spot, player_info)
+    return player_moves_counter >= 4 and lines_search(rows_len, columns_len, board, current_spot, player_info)
 
 
 rows, columns = 6, 7
