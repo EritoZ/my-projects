@@ -6,7 +6,6 @@ class FullColumnError(Exception):
 
 
 def player_count():
-
     while True:
         try:
             players_amount = int(input('Please choose the amount of players.\n'))
@@ -30,21 +29,11 @@ def lines_search(row_len, col_len, board, current_spot, player_info):
 
     vertical = ''.join([str(board[i][col_i]) for i in range(row_len)])
 
-    left_up = [str(board[row_i - i][col_i - i]) for i in range(4)
-               if row_i - i in range(row_len) and col_i - i in range(col_len)]
+    first_line = ''.join([str(board[row_i - 4 + i][col_i - 4 + i]) for i in range(8)
+                  if row_i - 4 + i in range(row_len) and col_i - 4 + i in range(col_len)])
 
-    up_right = [str(board[row_i - i][col_i + i]) for i in range(4)
-                if row_i - i in range(row_len) and col_i + i in range(col_len)]
-
-    down_right = [str(board[row_i + i][col_i + i]) for i in range(1, 4)
-                  if row_i + i in range(row_len) and col_i + i in range(col_len)]
-
-    down_left = [str(board[row_i + i][col_i - i]) for i in range(1, 4)
-                 if row_i + i in range(row_len) and col_i - i in range(col_len)]
-
-    first_line = ''.join(left_up[::-1] + down_right)
-
-    second_line = ''.join(down_left + up_right)
+    second_line = ''.join([str(board[row_i - 4 + i][col_i + 4 - i]) for i in range(8)
+                   if row_i - 4 + i in range(row_len) and col_i + 4 - i in range(col_len)])
 
     all_lines = (horizontal, vertical, first_line, second_line)
 
@@ -52,7 +41,6 @@ def lines_search(row_len, col_len, board, current_spot, player_info):
 
 
 def check_if_won(player_moves_counter, rows_len, columns_len, board, current_spot, player_info):
-
     return player_moves_counter >= 4 and lines_search(rows_len, columns_len, board, current_spot, player_info)
 
 
