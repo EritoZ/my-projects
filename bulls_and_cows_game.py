@@ -94,10 +94,11 @@ while n_tries != turn and not won:
         print('Error, player input must be a number. Please try again.')
 
     except SameNumbersError:
-        print('Number must have different numbers.')
+        print('Player number must have different digits.')
 
     except WrongNumberLengthError:
-        print(f'Number must be {number_length}-digit length.')
+        print(f'Player number must be {number_length}-digit length.')
 
 if not won:
     print(f'You lost. Better luck next time.\nAnswer: {"".join(map(str, comp_num))}')
+    
