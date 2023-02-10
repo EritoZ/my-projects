@@ -5,6 +5,10 @@ class SameNumbersError(Exception):
     pass
 
 
+class LessThanOneError(Exception):
+    pass
+
+
 class WrongNumberLengthError(Exception):
     pass
 
@@ -16,8 +20,14 @@ def take_data():
             tries = int(input('Please type the number of tries: '))
             length = int(input('Please type the length of the number: '))
 
+            if tries < 1 or length < 1:
+                raise LessThanOneError
+
         except ValueError:
-            print('Error, player input must be a number. Please try again.')
+            print('Error, player input must be a number.')
+
+        except LessThanOneError:
+            print('Error, player input must be a number greater than 0.')
 
         else:
             break
@@ -61,10 +71,12 @@ comp_num = random_number_generator(number_length)
 turn = 0
 won = False
 
+print('''Guess the number!
+Note: The number doesn't start with 0.''')
 while n_tries != turn and not won:
 
     try:
-        player_numbers = list(map(int, input(f'Please type {number_length} numbers.\n')))
+        player_numbers = list(map(int, input(f'Please type а {number_length}-digit number.\n')))
 
         if len(player_numbers) != number_length:
             raise WrongNumberLengthError
@@ -82,10 +94,10 @@ while n_tries != turn and not won:
         print('Error, player input must be a number. Please try again.')
 
     except SameNumbersError:
-        print('Numbers must be different.')
+        print('Number must have different numbers.')
 
     except WrongNumberLengthError:
-        print(f'Numbers must be {number_length}.')
+        print(f'Number must be {number_length}-digit length.')
 
 if not won:
     print(f'You lost. Better luck next time.\nAnswer: {"".join(map(str, comp_num))}')
