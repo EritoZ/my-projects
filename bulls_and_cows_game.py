@@ -27,7 +27,7 @@ def take_data():
             print('Error, player input must be a number.')
 
         except LessThanOneError:
-            print('Error, player input must be a number greater than 0.')
+            print('Error, player inputs must be numbers greater than 0.')
 
         else:
             break
