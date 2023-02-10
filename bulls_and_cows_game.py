@@ -17,10 +17,9 @@ def take_data():
     while True:
 
         try:
-            tries = int(input('Please type the number of tries: '))
             length = int(input('Please type the length of the number: '))
 
-            if tries < 1 or length < 1:
+            if length < 1:
                 raise LessThanOneError
 
         except ValueError:
@@ -32,7 +31,7 @@ def take_data():
         else:
             break
 
-    return tries, length
+    return length
 
 
 def random_number_generator(length: int):
@@ -66,12 +65,13 @@ def matching_numbers(generated_number, current_player_numbers, n_length, current
         return f'{current_turn}: {bulls_length} bulls! You won!\nAnswer: {"".join(map(str, generated_number))}', True
 
 
-n_tries, number_length = take_data()
+n_tries = 10
+number_length = take_data()
 comp_num = random_number_generator(number_length)
 turn = 0
 won = False
 
-print('''Guess the number!
+print('''You have 10 tries. Guess the number!
 Note: The number doesn't start with 0.''')
 while n_tries != turn and not won:
 
@@ -101,4 +101,3 @@ while n_tries != turn and not won:
 
 if not won:
     print(f'You lost. Better luck next time.\nAnswer: {"".join(map(str, comp_num))}')
-    
