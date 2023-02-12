@@ -58,9 +58,9 @@ print(f'''This is the numeration of the board:
 
 while fields and not winner:
 
-    current_player, side, moves = players[0]
-
     try:
+        current_player, side, moves = players[0]
+
         chosen_index = int(input(f'{current_player}, please choose a free position [1-9]: ')) - 1
         row, col = chosen_index // 3, chosen_index % 3
         field_choice = board[row][col]
@@ -78,19 +78,15 @@ while fields and not winner:
         if players[0][2] >= 3 and victory_logic(3, board, [row, col], side):
             winner = current_player
 
+        [print('|  ' + '  |  '.join(row) + '  |') for row in board]
+
+        players.rotate(-1)
+
     except (IndexError, ValueError):
         print('Field choice must be a number from 1 to 9.')
 
-        continue
-
     except BusyFieldError:
         print('The chosen position is already used.')
-
-        continue
-
-    [print('|  ' + '  |  '.join(row) + '  |') for row in board]
-
-    players.rotate(-1)
 
 if winner:
     print(f'{winner} won!')
