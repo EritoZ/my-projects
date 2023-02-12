@@ -30,10 +30,10 @@ def lines_search(row_len, col_len, board, current_spot, player_info):
     vertical = ''.join([str(board[i][col_i]) for i in range(row_len)])
 
     first_line = ''.join([str(board[row_i - 4 + i][col_i - 4 + i]) for i in range(8)
-                  if row_i - 4 + i in range(row_len) and col_i - 4 + i in range(col_len)])
+                          if row_i - 4 + i in range(row_len) and col_i - 4 + i in range(col_len)])
 
     second_line = ''.join([str(board[row_i - 4 + i][col_i + 4 - i]) for i in range(8)
-                   if row_i - 4 + i in range(row_len) and col_i + 4 - i in range(col_len)])
+                           if row_i - 4 + i in range(row_len) and col_i + 4 - i in range(col_len)])
 
     all_lines = (horizontal, vertical, first_line, second_line)
 
@@ -53,9 +53,9 @@ winner = False
 [print(row) for row in board_matrix]
 while spots_n and not winner:
 
-    current_player = players[0][0]
-
     try:
+        current_player = players[0][0]
+
         column_choice = int(input(f'Player {current_player}, please choose a column.\n')) - 1
 
         if column_choice < 0:
@@ -74,20 +74,16 @@ while spots_n and not winner:
         else:
             raise FullColumnError
 
+        [print(row) for row in board_matrix]
+
+        players.rotate(-1)
+
     except (IndexError, ValueError):
         print('Column choice must be a number from 1 to 7.')
-
-        continue
 
     except FullColumnError:
         # noinspection PyUnboundLocalVariable
         print(FullColumnError(f'Column {column_choice + 1} is full. Please choose another.'))
-
-        continue
-
-    [print(row) for row in board_matrix]
-
-    players.rotate(-1)
 
 if winner:
     print(f'Player {winner} won!')
