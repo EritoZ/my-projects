@@ -87,8 +87,10 @@ def bracket_solving(the_expression):
 
         if "(" in the_expression and ")" in the_expression:
             bracket_expression = re.search(r"\(([^(]+?)\)", the_expression)
+            
             bracket_expression_start = bracket_expression.start()
             bracket_expression_end = bracket_expression.end()
+            
             bracket_expression = bracket_expression.group(1)
 
             bracket_expression = multiplication(bracket_expression)
