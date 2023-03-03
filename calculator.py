@@ -37,8 +37,10 @@ def get_second_num(sub_or_full_expression, index):
 def addition(sub_or_full_expression):
     while " + " in sub_or_full_expression:
         plus_location = sub_or_full_expression.index(" + ")
+        
         first_num, start = get_first_num(sub_or_full_expression, plus_location)
         second_num, end = get_second_num(sub_or_full_expression, plus_location)
+        
         result = str(first_num + second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
@@ -49,8 +51,10 @@ def addition(sub_or_full_expression):
 def subtraction(sub_or_full_expression):
     while " - " in sub_or_full_expression:
         minus_location = sub_or_full_expression.index(" - ")
+        
         first_num, start = get_first_num(sub_or_full_expression, minus_location)
         second_num, end = get_second_num(sub_or_full_expression, minus_location)
+        
         result = str(first_num - second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
@@ -61,8 +65,10 @@ def subtraction(sub_or_full_expression):
 def multiplication(sub_or_full_expression):
     while " * " in sub_or_full_expression:
         multiplication_location = sub_or_full_expression.index(" * ")
+        
         first_num, start = get_first_num(sub_or_full_expression, multiplication_location)
         second_num, end = get_second_num(sub_or_full_expression, multiplication_location)
+        
         result = str(first_num * second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
@@ -73,8 +79,10 @@ def multiplication(sub_or_full_expression):
 def division(sub_or_full_expression):
     while " / " in sub_or_full_expression:
         division_location = sub_or_full_expression.index(" / ")
+        
         first_num, start = get_first_num(sub_or_full_expression, division_location)
         second_num, end = get_second_num(sub_or_full_expression, division_location)
+        
         result = str(first_num / second_num)
 
         sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
