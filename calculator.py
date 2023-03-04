@@ -123,18 +123,19 @@ def bracket_solving(the_expression):
 print("""Welcome to my calculator!
 In order to use it, you need to separate the numbers and arithmetic symbols with a single space like this - A + B or 
 (A - B). Otherwise it will explode. Currently, it only supports addition, subtraction, multiplication and division.
-If you find bugs, message me.""")
+If you find bugs, message me.\n""")
 
-expression = input("Type your expression here: ")
+while True:
+    expression = input("Type your expression here: ")
 
-expression = bracket_solving(expression)
+    expression = bracket_solving(expression)
 
-expression = multiplication(expression)
+    expression = multiplication(expression)
 
-expression = division(expression)
+    expression = division(expression)
 
-expression = addition(expression)
+    expression = addition(expression)
 
-expression = subtraction(expression)
+    expression = subtraction(expression)
 
-print(f"Result: {expression}")
+    print(f"Result: {expression}\n")
