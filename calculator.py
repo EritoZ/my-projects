@@ -3,33 +3,35 @@ from decimal import Decimal
 
 
 def get_first_num(sub_or_full_expression, index):
-    num = ""
+    num = []
     start = 0
 
     for i in range(index - 1, -1, -1):
-        if sub_or_full_expression[i] != " ":
-            num += sub_or_full_expression[i]
-            if i == 0:
-                start = i
-        else:
+
+        if sub_or_full_expression[i] == " ":
             start = i + 1
             break
 
-    return Decimal(num[::-1]), start
+        num += sub_or_full_expression[i]
+
+    num = ''.join(num[::-1])
+
+    return Decimal(num), start
 
 
 def get_second_num(sub_or_full_expression, index):
-    num = ""
-    end = 0
+    num = []
+    end = len(sub_or_full_expression)
 
     for i in range(index + 3, len(sub_or_full_expression)):
-        if sub_or_full_expression[i] != " ":
-            num += sub_or_full_expression[i]
-            if i == len(sub_or_full_expression) - 1:
-                end = i + 1
-        else:
+
+        if sub_or_full_expression[i] == " ":
             end = i
             break
+
+        num += sub_or_full_expression[i]
+
+    num = ''.join(num)
 
     return Decimal(num), end
 
@@ -41,9 +43,9 @@ def addition(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, plus_location)
         second_num, end = get_second_num(sub_or_full_expression, plus_location)
 
-        result = str(first_num + second_num)
+        result = (first_num + second_num).normalize()
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+        sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
     return sub_or_full_expression
 
@@ -55,9 +57,9 @@ def subtraction(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, minus_location)
         second_num, end = get_second_num(sub_or_full_expression, minus_location)
 
-        result = str(first_num - second_num)
+        result = (first_num - second_num).normalize()
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+        sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
     return sub_or_full_expression
 
@@ -69,9 +71,9 @@ def multiplication(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, multiplication_location)
         second_num, end = get_second_num(sub_or_full_expression, multiplication_location)
 
-        result = str(first_num * second_num)
+        result = (first_num * second_num).normalize()
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+        sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
     return sub_or_full_expression
 
@@ -83,9 +85,9 @@ def division(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, division_location)
         second_num, end = get_second_num(sub_or_full_expression, division_location)
 
-        result = str(first_num / second_num)
+        result = first_num / second_num
 
-        sub_or_full_expression = sub_or_full_expression[:start] + result + sub_or_full_expression[end:]
+        sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
     return sub_or_full_expression
 
@@ -135,4 +137,4 @@ expression = addition(expression)
 
 expression = subtraction(expression)
 
-print(f"Result: {expression.rstrip('0').rstrip('.') if expression != '0' else '0'}")
+print(f"Result: {expression}")
