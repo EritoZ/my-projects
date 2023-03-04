@@ -23,7 +23,7 @@ def get_second_num(sub_or_full_expression, index):
     num = []
     end = len(sub_or_full_expression)
 
-    for i in range(index + 3, len(sub_or_full_expression)):
+    for i in range(index + 3, end):
 
         if sub_or_full_expression[i] == " ":
             end = i
