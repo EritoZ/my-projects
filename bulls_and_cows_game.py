@@ -50,14 +50,14 @@ def matching_numbers(generated_number, current_player_numbers, n_length, current
     bulls = [generated_number[i] for i in range(len(generated_number)) if generated_number[i] == player_numbers[i]]
     cows = [n for n in generated_number if n in current_player_numbers and n not in bulls]
 
-    bulls_length = len(bulls)
-    cows_length = len(cows)
+    bulls_amount = len(bulls)
+    cows_amount = len(cows)
 
-    if bulls_length != n_length:
-        return f'{current_turn}: {bulls_length} bulls and {cows_length} cows.', False
+    if bulls_amount != n_length:
+        return f'{current_turn}: {bulls_amount} bulls and {cows_amount} cows.', False
 
     else:
-        return f'{current_turn}: {bulls_length} bulls! You won!\nAnswer: {"".join(map(str, generated_number))}', True
+        return f'{current_turn}: {bulls_amount} bulls! You won!\nAnswer: {"".join(map(str, generated_number))}', True
 
 
 n_tries = 10
