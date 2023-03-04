@@ -12,7 +12,7 @@ def get_first_num(sub_or_full_expression, index):
             start = i + 1
             break
 
-        num += sub_or_full_expression[i]
+        num.append(sub_or_full_expression[i])
 
     num = ''.join(num[::-1])
 
@@ -29,7 +29,7 @@ def get_second_num(sub_or_full_expression, index):
             end = i
             break
 
-        num += sub_or_full_expression[i]
+        num.append(sub_or_full_expression[i])
 
     num = ''.join(num)
 
