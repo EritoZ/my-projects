@@ -5,10 +5,6 @@ class SameNumbersError(Exception):
     pass
 
 
-class LessThanOneError(Exception):
-    pass
-
-
 class WrongNumberLengthError(Exception):
     pass
 
@@ -17,16 +13,16 @@ def take_data():
     while True:
 
         try:
-            length = int(input('Please type the length of the number: '))
+            length = int(input('Please type the length of the number (max 10): '))
 
-            if length < 1:
-                raise LessThanOneError
+            if not 1 <= length <= 10:
+                raise WrongNumberLengthError
 
         except ValueError:
             print('Error, player input must be a number.')
 
-        except LessThanOneError:
-            print('Error, player input must be numbers greater than 0.')
+        except WrongNumberLengthError:
+            print('Error, player input must be a number with length of 1 to 10 numbers.')
 
         else:
             break
@@ -51,7 +47,6 @@ def random_number_generator(length: int):
 
 
 def matching_numbers(generated_number, current_player_numbers, n_length, current_turn):
-
     bulls = [generated_number[i] for i in range(len(generated_number)) if generated_number[i] == player_numbers[i]]
     cows = [n for n in generated_number if n in current_player_numbers and n not in bulls]
 
