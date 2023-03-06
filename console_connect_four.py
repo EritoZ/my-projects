@@ -14,7 +14,7 @@ def player_count():
                 raise ValueError
 
         except ValueError:
-            print(ValueError('Player count should be a positive number.'))
+            print('Player count should be a positive number.')
 
         else:
             break
@@ -83,7 +83,7 @@ while spots_n and not winner:
 
     except FullColumnError:
         # noinspection PyUnboundLocalVariable
-        print(FullColumnError(f'Column {column_choice + 1} is full. Please choose another.'))
+        print(f'Column {column_choice + 1} is full. Please choose another.')
 
 if winner:
     print(f'Player {winner} won!')
