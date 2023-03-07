@@ -43,7 +43,7 @@ def addition(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, plus_location)
         second_num, end = get_second_num(sub_or_full_expression, plus_location)
 
-        result = (first_num + second_num).normalize()
+        result = first_num + second_num
 
         sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
@@ -57,7 +57,7 @@ def subtraction(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, minus_location)
         second_num, end = get_second_num(sub_or_full_expression, minus_location)
 
-        result = (first_num - second_num).normalize()
+        result = first_num - second_num
 
         sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
@@ -71,7 +71,7 @@ def multiplication(sub_or_full_expression):
         first_num, start = get_first_num(sub_or_full_expression, multiplication_location)
         second_num, end = get_second_num(sub_or_full_expression, multiplication_location)
 
-        result = (first_num * second_num).normalize()
+        result = first_num * second_num
 
         sub_or_full_expression = sub_or_full_expression[:start] + str(result) + sub_or_full_expression[end:]
 
@@ -125,17 +125,16 @@ In order to use it, you need to separate the numbers and arithmetic symbols with
 (A - B). Otherwise it will explode. Currently, it only supports addition, subtraction, multiplication and division.
 If you find bugs, message me.\n""")
 
-while True:
-    expression = input("Type your expression here: ")
+expression = input("Type your expression here: ")
 
-    expression = bracket_solving(expression)
+expression = bracket_solving(expression)
 
-    expression = multiplication(expression)
+expression = multiplication(expression)
 
-    expression = division(expression)
+expression = division(expression)
 
-    expression = addition(expression)
+expression = addition(expression)
 
-    expression = subtraction(expression)
+expression = subtraction(expression)
 
-    print(f"Result: {expression}\n")
+print(f"Result: {Decimal(expression).normalize() if '.0' in expression else expression}\n")
