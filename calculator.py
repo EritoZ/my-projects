@@ -137,4 +137,4 @@ expression = addition(expression)
 
 expression = subtraction(expression)
 
-print(f"Result: {Decimal(expression).normalize() if '.0' in expression else expression}\n")
+print(f"Result: {Decimal(expression).normalize() + 0}\n")
