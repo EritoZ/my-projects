@@ -94,13 +94,14 @@ def division(sub_or_full_expression):
 
 def bracket_solving(the_expression):
 
-    while "(" in the_expression or ")" in the_expression:
+    opening_bracket_count = the_expression.count("(")
+    closing_bracket_count = the_expression.count(")")
+    sum_bracket_count = opening_bracket_count + closing_bracket_count
 
-        opening_bracket_count = the_expression.count("(")
-        closing_bracket_count = the_expression.count(")")
+    if sum_bracket_count and sum_bracket_count % 2 != 0:
+        raise SyntaxError("Error, invalid syntax.")
 
-        if opening_bracket_count != closing_bracket_count:
-            raise SyntaxError("Error, invalid syntax.")
+    while sum_bracket_count:
 
         bracket_expression = re.search(r"\(([^(]+?)\)", the_expression)
 
@@ -119,6 +120,8 @@ def bracket_solving(the_expression):
 
         the_expression = the_expression[:bracket_expression_start] + bracket_expression \
                          + the_expression[bracket_expression_end:]
+
+        sum_bracket_count -= 2
 
     return the_expression
 
