@@ -36,6 +36,19 @@ def get_second_num(sub_or_full_expression, index):
     return Decimal(num), end
 
 
+def search_brackets(the_expression, opening_or_closing_bracket):
+
+    """
+    0 or 1 for opening_or_closing_bracket parameter.
+    """
+
+    if not opening_or_closing_bracket:
+        return "(" in the_expression
+
+    if opening_or_closing_bracket:
+        return ")" in the_expression
+
+
 def addition(sub_or_full_expression):
     while " + " in sub_or_full_expression:
         plus_location = sub_or_full_expression.index(" + ")
@@ -93,29 +106,35 @@ def division(sub_or_full_expression):
 
 
 def bracket_solving(the_expression):
-    while "(" in the_expression or ")" in the_expression:
 
-        if "(" in the_expression and ")" in the_expression:
-            bracket_expression = re.search(r"\(([^(]+?)\)", the_expression)
+    found_opening_bracket = search_brackets(the_expression, 0)
+    found_closing_bracket = search_brackets(the_expression, 1)
 
-            bracket_expression_start = bracket_expression.start()
-            bracket_expression_end = bracket_expression.end()
+    while found_opening_bracket or found_closing_bracket:
 
-            bracket_expression = bracket_expression.group(1)
-
-            bracket_expression = multiplication(bracket_expression)
-
-            bracket_expression = division(bracket_expression)
-
-            bracket_expression = addition(bracket_expression)
-
-            bracket_expression = subtraction(bracket_expression)
-
-            the_expression = the_expression[:bracket_expression_start] + bracket_expression \
-                             + the_expression[bracket_expression_end:]
-
-        else:
+        if not (found_opening_bracket and found_closing_bracket):
             raise SyntaxError("Error, invalid syntax.")
+
+        bracket_expression = re.search(r"\(([^(]+?)\)", the_expression)
+
+        bracket_expression_start = bracket_expression.start()
+        bracket_expression_end = bracket_expression.end()
+
+        bracket_expression = bracket_expression.group(1)
+
+        bracket_expression = multiplication(bracket_expression)
+
+        bracket_expression = division(bracket_expression)
+
+        bracket_expression = addition(bracket_expression)
+
+        bracket_expression = subtraction(bracket_expression)
+
+        the_expression = the_expression[:bracket_expression_start] + bracket_expression \
+                         + the_expression[bracket_expression_end:]
+
+        found_opening_bracket = search_brackets(the_expression, 0)
+        found_closing_bracket = search_brackets(the_expression, 1)
 
     return the_expression
 
