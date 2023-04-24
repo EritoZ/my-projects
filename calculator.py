@@ -36,19 +36,6 @@ def get_second_num(sub_or_full_expression, index):
     return Decimal(num), end
 
 
-def search_brackets(the_expression, opening_or_closing_bracket):
-
-    """
-    0 or 1 for opening_or_closing_bracket parameter.
-    """
-
-    if not opening_or_closing_bracket:
-        return "(" in the_expression
-
-    if opening_or_closing_bracket:
-        return ")" in the_expression
-
-
 def addition(sub_or_full_expression):
     while " + " in sub_or_full_expression:
         plus_location = sub_or_full_expression.index(" + ")
@@ -107,12 +94,12 @@ def division(sub_or_full_expression):
 
 def bracket_solving(the_expression):
 
-    found_opening_bracket = search_brackets(the_expression, 0)
-    found_closing_bracket = search_brackets(the_expression, 1)
+    while "(" in the_expression or ")" in the_expression:
 
-    while found_opening_bracket or found_closing_bracket:
+        opening_bracket_count = the_expression.count("(")
+        closing_bracket_count = the_expression.count(")")
 
-        if not (found_opening_bracket and found_closing_bracket):
+        if opening_bracket_count != closing_bracket_count:
             raise SyntaxError("Error, invalid syntax.")
 
         bracket_expression = re.search(r"\(([^(]+?)\)", the_expression)
@@ -132,9 +119,6 @@ def bracket_solving(the_expression):
 
         the_expression = the_expression[:bracket_expression_start] + bracket_expression \
                          + the_expression[bracket_expression_end:]
-
-        found_opening_bracket = search_brackets(the_expression, 0)
-        found_closing_bracket = search_brackets(the_expression, 1)
 
     return the_expression
 
