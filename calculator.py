@@ -98,7 +98,7 @@ def bracket_solving(the_expression):
     closing_bracket_count = the_expression.count(")")
     sum_bracket_count = opening_bracket_count + closing_bracket_count
 
-    if opening_bracket_count and closing_bracket_count and sum_bracket_count % 2 != 0:
+    if opening_bracket_count != closing_bracket_count:
         raise SyntaxError("Error, invalid syntax.")
 
     while sum_bracket_count:
