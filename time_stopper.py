@@ -40,7 +40,7 @@ class TimeStopper:
 
             self.clock.config(text=time.strftime('%H:%M:%S:%f')[:-3], font=('Arial', 20))
 
-        self.root.after(10, self.update_time)
+        self.root.after(2, self.update_time)
 
     def toggle_pause(self):
         if not self.paused:
@@ -57,4 +57,5 @@ class TimeStopper:
         self.paused = False
 
 
-TimeStopper()
+if __name__ == "__main__":
+    TimeStopper()
