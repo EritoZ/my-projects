@@ -41,10 +41,10 @@ class TimeLogger:
     def enable_text_box_action(f):
         def wrapper(self):
             self.text_box_with_times.config(state='normal')
-            f(self)
+            result = f(self)
             self.text_box_with_times.config(state='disabled')
 
-            return
+            return result
 
         return wrapper
 
